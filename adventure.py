@@ -1,44 +1,51 @@
+import pygame
 from random import randint
 
 location = "home"
 player_health = 100
 enemy_health = 100
 
+pygame.init()
+screen = pygame.display.set_mode((400, 300))
+
 
 def display_options(location):
-    match location:
-        case "home":
-            print("You are at home.")
-            print("1: Go to the arena")
-        case "arena":
-            print("You are in the arena.")
-            print("1: Battle AI")
-            print("2: Return home")
+    font = pygame.font.Font(None, 36)
+    if location == "home":
+        text = font.render("You are at home.", True, (255, 255, 255))
+        text2 = font.render("1: Go to the arena", True, (255, 255, 255))
+    elif location == "arena":
+        text = font.render("You are in the arena.", True, (255, 255, 255))
+        text2 = font.render("1: Battle AI", True, (255, 255, 255))
+        text3 = font.render("2: Return home", True, (255, 255, 255))
+
+    screen.fill((0, 0, 0))
+    screen.blit(text, (100, 100))
+    screen.blit(text2, (100, 150))
+    if location == "arena":
+        screen.blit(text3, (100, 200))
+    pygame.display.update()
 
 
 def get_choice():
-    choice = input("Enter your choice on your keyboard (1-2)")
-    if choice == '1':
-        return choice
-    elif choice == '2':
-        return choice
-    else:
-        print("That is not a valid response!")
-        get_choice()
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.unicode == '1':
+                return '1'
+            elif event.unicode == '2':
+                return '2'
 
 
 def update_location(choice, location):
-    match location:
-        case "home":
-            match choice:
-                case '1':
-                    location = "arena"
-        case "arena":
-            match choice:
-                case '1':
-                    battle(player_health, enemy_health)
-                case '2':
-                    location = "home"
+    global player_health, enemy_health
+    if location == "home":
+        if choice == '1':
+            location = "arena"
+    elif location == "arena":
+        if choice == '1':
+            player_health, enemy_health = battle(player_health, enemy_health)
+        elif choice == '2':
+            location = "home"
     return location
 
 
