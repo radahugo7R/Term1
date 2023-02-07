@@ -14,6 +14,7 @@ def display_options(location):
     if location == "home":
         text = font.render("You are at home.", True, (255, 255, 255))
         text2 = font.render("1: Go to the arena", True, (255, 255, 255))
+        text3 = font.render("2: Quit Game", True, (255, 255, 255))
     elif location == "arena":
         text = font.render("You are in the arena.", True, (255, 255, 255))
         text2 = font.render("1: Battle AI", True, (255, 255, 255))
@@ -22,8 +23,7 @@ def display_options(location):
     screen.fill((0, 0, 0))
     screen.blit(text, (100, 100))
     screen.blit(text2, (100, 150))
-    if location == "arena":
-        screen.blit(text3, (100, 200))
+    screen.blit(text3, (100, 200))
     pygame.display.update()
 
 
@@ -41,6 +41,8 @@ def update_location(choice, location):
     if location == "home":
         if choice == '1':
             location = "arena"
+        elif choice == '2':
+            location = "quit"
     elif location == "arena":
         if choice == '1':
             player_health, enemy_health = battle(player_health, enemy_health)
@@ -57,10 +59,10 @@ def battle(player_health, enemy_health):
         move = get_choice()
         enemy_move = randint(1, 2)
         match move:
-            case '1':
+            case 1:
                 enemy_health = enemy_health - randint(10, 20)
                 print("You attack the enemy and deal damage.")
-            case '2':
+            case 2:
                 print("You defend and take reduced damage.")
         match enemy_move:
             case 1:
@@ -82,6 +84,7 @@ def main():
         display_options(location)
         choice = get_choice()
         location = update_location(choice, location)
+    pygame.quit()
 
 
 main()
