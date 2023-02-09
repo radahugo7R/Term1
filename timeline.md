@@ -5,6 +5,7 @@
   Jetbrains (https://github.com/github/gitignore/blob/main/Python.gitignore
   / https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore)
 - Inited a base GitHub repo using git cmd line, connected it to my Term1 GitHub Repo
+- Used conventional commits, explain more about them in documentation
 - Followed the sudo code and re-created it in python. Used a lot of google/stack overflow
 - I've got extremely limited knowledge in Python but sufficient knowledge in other languages that I was able to
   effectively use google to re-create the game in a relatively quick timespan.
@@ -26,6 +27,8 @@ Snapshot of the base-game working in PyCharm's terminal:
 - After sufficient research, I decided on pygame because of its flexibility, and its extensive documentation, and support community.
 - Having never used pygame before, I used pygames 'examples' category and spent a lot of time looking at other games and how they use pygames library.
 - https://github.com/pygame/pygame/tree/main/examples
+- I initiatlly had significant trouble importing pygame, but resolved it by importing their 'dev' version after a post on stack overflow.
+
 - I then started work on the GUI. Following pycharm's docs and referencing the example repositries, I managed to get a very basic GUI working for the location selector screen.
 
 Snapshot of the home menu in a pygame gui:
@@ -35,6 +38,9 @@ Snapshot of the home menu in a pygame gui:
 
 Snapshot of the quit game button on the home menu:
 ![img_6.png](img_6.png)
+
+More snapshots of the initial UI concept:
+![img_7.png](img_7.png)
 
 
 
