@@ -1,16 +1,21 @@
-import pygame
-from random import randint
-from time import sleep
+# Import Libraries
+import pygame # Used to generate the GUI
+from random import randint # Used to generate random ints
+from time import sleep # Used to wait/sleep
 
-location = "home"
-player_health = 100
-enemy_health = 100
-in_battle = False
+# Assign default variables
+location = "home" # Players starting location
+player_health = 100 # Players starting health
+enemy_health = 100 # Enemy's starting health
+in_battle = False # Whether or not the player is currently in a battle
 
+# Init and configure the pygame gui
 pygame.init()
 screen = pygame.display.set_mode((400, 300))
 
 
+# Display the players location options on the screen
+# @param: Location - The current location of the player
 def display_options(location):
     font = pygame.font.Font(None, 36)
     if location == "home":
@@ -29,6 +34,7 @@ def display_options(location):
     pygame.display.update()
 
 
+# Listen for input and return the string value
 def get_choice():
     for event in pygame.event.get():
         if event.type == pygame.KEYUP:
@@ -37,7 +43,9 @@ def get_choice():
             elif event.unicode == '2':
                 return '2'
 
-
+# Update the dynamic location variables
+# @param: choice - The users choice of where to go
+# @param: location - The users current location
 def update_location(choice, location):
     global player_health, enemy_health
     if location == "home":
@@ -52,7 +60,9 @@ def update_location(choice, location):
             location = "home"
     return location
 
-
+# Main Battle Function
+# @param: player_health - Previously defined variable
+# @param: enemy_health - Previously defined variable
 def battle(player_health, enemy_health):
     global in_battle, move_enemy, move, text4
     move = "ply1"
@@ -118,6 +128,7 @@ def battle(player_health, enemy_health):
     return player_health, enemy_health
 
 
+# Main game function, called when the program starts.
 def main():
     global location
     while location != "quit":
